@@ -1,0 +1,123 @@
+/**
+ * Border.
+ */
+
+// .bl-border(2px; dotted; #847299); .bl-border(solid; 3px; #666);
+.bl-border (@border-width; @border-style; @border-color) when not (@border-width=_DIRECTION_ROUTE_) and not (@border-width=_DIRECTION_) {
+  border: @border-width @border-style @border-color;
+}
+
+// .bl-border(2px);
+.bl-border (@border-width) when (isnumber(@border-width)) {
+  .bl-border(@border-width; solid; #000);
+}
+
+// .bl-border(dashed);
+.bl-border (@border-style) when (iskeyword(@border-style)) {
+  .bl-border(1px; @border-style; #000);
+}
+
+// .bl-border(#F00); .bl-border(blue);
+.bl-border (@border-color) when (iscolor(@border-color)) {
+  .bl-border(1px; solid; @border-color);
+}
+
+//.bl-border(2px; dotted);
+.bl-border (@border-width; @border-style) when (isnumber(@border-width)) and (iskeyword(@border-style)) {
+  .bl-border(@border-width; @border-style; #000);
+}
+
+// .bl-border(solid; 3px);
+.bl-border (@border-style; @border-width) when (isnumber(@border-width)) and (iskeyword(@border-style)) {
+  .bl-border(@border-width; @border-style; #000);
+}
+
+// .bl-border(2px; #999);
+.bl-border (@border-width; @border-color) when (isnumber(@border-width)) and (iscolor(@border-color)) {
+  .bl-border(@border-width; solid; @border-color);
+}
+
+// .bl-border(green; 1px);
+.bl-border (@border-color; @border-width) when (isnumber(@border-width)) and (iscolor(@border-color)) {
+  .bl-border(@border-width; solid; @border-color);
+}
+
+// .bl-border(solid; #0F0);
+.bl-border (@border-style; @border-color) when (iskeyword(@border-style)) and (iscolor(@border-color)) {
+  .bl-border(1px; @border-style; @border-color);
+}
+
+// .bl-border(#A2B109; dashed);
+.bl-border (@border-color; @border-style) when (iskeyword(@border-style)) and (iscolor(@border-color)) {
+  .bl-border(1px; @border-style; @border-color);
+}
+
+// .bl-border(6px dotted); .bl-border(yellow 2px); .bl-border(none, #222;);
+.bl-border (@border-style-list) when (length(@border-style-list) = 2) {
+  .bl-border(extract(@border-style-list, 1); extract(@border-style-list, 2));
+}
+
+// .bl-border(0 dashed #A87); .bl-border(#BBB solid 9px);
+.bl-border (@border-style-list) when (length(@border-style-list) = 3) {
+  .bl-border(extract(@border-style-list, 1); extract(@border-style-list, 2); extract(@border-style-list, 3));
+}
+
+// .bl-border(6px; 3px; 1px; 2px); .bl-border(#FFF000 solid; null; 3px, dashed; 0 dotted #909090);
+.bl-border (@top-border-style-list; @right-border-style-list; @bottom-border-style-list; @left-border-style-list) when not (@top-border-style-list=_DIRECTION_) {
+  .bl-border(_DIRECTION_ROUTE_; top; @top-border-style-list);
+  .bl-border(_DIRECTION_ROUTE_; right; @right-border-style-list);
+  .bl-border(_DIRECTION_ROUTE_; bottom; @bottom-border-style-list);
+  .bl-border(_DIRECTION_ROUTE_; left; @left-border-style-list);
+}
+
+.bl-border (_DIRECTION_ROUTE_; @border-direction; @border-style-list) when not (@border-style-list = null) and (length(@border-style-list) = 1) {
+  .bl-border(_DIRECTION_; @border-direction; @border-style-list);
+}
+
+.bl-border (_DIRECTION_ROUTE_; @border-direction; @border-style-list) when (length(@border-style-list) = 2) {
+  .bl-border(_DIRECTION_; @border-direction; extract(@border-style-list, 1); extract(@border-style-list, 2));
+}
+
+.bl-border (_DIRECTION_ROUTE_; @border-direction; @border-style-list) when (length(@border-style-list) = 3) {
+  .bl-border(_DIRECTION_; @border-direction; extract(@border-style-list, 1); extract(@border-style-list, 2); extract(@border-style-list, 3));
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-width) when (isnumber(@border-width)) {
+  .bl-border(_DIRECTION_; @border-direction; @border-width; solid; #000);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-style) when (iskeyword(@border-style)) {
+  .bl-border(_DIRECTION_; @border-direction; 1px; @border-style; #000);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-color) when (iscolor(@border-color)) {
+  .bl-border(_DIRECTION_; @border-direction; 1px; solid; @border-color);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-width; @border-style) when (isnumber(@border-width)) and (iskeyword(@border-style)) {
+  .bl-border(_DIRECTION_; @border-direction; @border-width; @border-style; #000);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-style; @border-width) when (isnumber(@border-width)) and (iskeyword(@border-style)) {
+  .bl-border(_DIRECTION_; @border-direction; @border-width; @border-style; #000);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-width; @border-color) when (isnumber(@border-width)) and (iscolor(@border-color)) {
+  .bl-border(_DIRECTION_; @border-direction; @border-width; solid; @border-color);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-color; @border-width) when (isnumber(@border-width)) and (iscolor(@border-color)) {
+  .bl-border(_DIRECTION_; @border-direction; @border-width; solid; @border-color);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-style; @border-color) when (iskeyword(@border-style)) and (iscolor(@border-color)) {
+  .bl-border(_DIRECTION_; @border-direction; 1px; @border-style; @border-color);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-color; @border-style) when (iskeyword(@border-style)) and (iscolor(@border-color)) {
+  .bl-border(_DIRECTION_; @border-direction; 1px; @border-style; @border-color);
+}
+
+.bl-border (_DIRECTION_; @border-direction; @border-width; @border-style; @border-color) {
+  border-@{border-direction}: @border-width @border-style @border-color;
+}
