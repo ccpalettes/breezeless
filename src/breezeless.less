@@ -121,3 +121,22 @@
 .bl-border (_DIRECTION_; @border-direction; @border-width; @border-style; @border-color) {
   border-@{border-direction}: @border-width @border-style @border-color;
 }
+
+/**
+ * inline-block display fix. IE6 and above.
+ */
+.bl-inline-block-fix {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+/**
+ * Formal syntax: none | text | all | element
+ */
+.bl-user-select (@value) {
+  -webkit-user-select: @value;
+  -moz-user-select: @value;
+  -ms-user-select: @value;
+  user-select: @value;
+}
