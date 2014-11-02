@@ -125,7 +125,7 @@
 /**
  * inline-block display fix. IE6 and above.
  */
-.bl-inline-block-fix {
+.bl-inline-block-fix () {
   display: inline-block;
   *display: inline;
   zoom: 1;
@@ -323,5 +323,154 @@
   -moz-transition-delay: @delay-list;
   -o-transition-delay: @delay-list;
   transition-delay: @delay-list;
+}
+
+/**
+ * Animation
+ */
+
+// .bl-animation(swing 3s ease 1s 2 alternate both running);
+.bl-animation (@animation) {
+  -webkit-animation: @animation;
+  -moz-animation: @animation;
+  animation: @animation;
+}
+
+// multiple animations
+// .bl-animation(bounce 5s; rotate 2s);
+.bl-animation (@animation1; @animation2; ...) {
+  @animation-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation: @animation-list;
+  -moz-animation: @animation-list;
+  animation: @animation-list;
+}
+
+// .bl-animation-name(swing);
+.bl-animation-name (@name) {
+  -webkit-animation-name: @name;
+  -moz-animation-name: @name;
+  animation-name: @name;
+}
+
+// .bl-animation-name(bounce; rotate);
+.bl-animation-name (@name1; @name2; ...) {
+  @name-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-name: @name-list;
+  -moz-animation-name: @name-list;
+  animation-name: @name-list;
+}
+
+// .bl-animation-duration(1s);
+.bl-animation-duration (@duration) {
+  -webkit-animation-duration: @duration;
+  -moz-animation-duration: @duration;
+  animation-duration: @duration;
+}
+
+// .bl-animation-duration(3s; 5s);
+.bl-animation-duration (@duration1; @duration2; ...) {
+  @duration-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-duration: @duration-list;
+  -moz-animation-duration: @duration-list;
+  animation-duration: @duration-list;
+}
+
+// .bl-animation-timing-function(ease);
+.bl-animation-timing-function (@timing-function) {
+  -webkit-animation-timing-function: @timing-function;
+  -moz-animation-timing-function: @timing-function;
+  animation-timing-function: @timing-function;
+}
+
+// .bl-animation-timing-function(ease-in; ease-out);
+.bl-animation-timing-function (@timing-function1; @timing-function2; ...) {
+  @timing-function-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-timing-function: @timing-function-list;
+  -moz-animation-timing-function: @timing-function-list;
+  animation-timing-function: @timing-function-list;
+}
+
+// .bl-animation-delay(2s);
+.bl-animation-delay (@delay) {
+  -webkit-animation-delay: @delay;
+  -moz-animation-delay: @delay;
+  animation-delay: @delay;
+}
+
+// .bl-animation-delay(0s; 3s);
+.bl-animation-delay (@delay1; @delay2; ...) {
+  @delay-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-delay: @delay-list;
+  -moz-animation-delay: @delay-list;
+  animation-delay: @delay-list;
+}
+
+// .bl-animation-iteration-count(6);
+.bl-animation-iteration-count (@iteration-count) {
+  -webkit-animation-iteration-count: @iteration-count;
+  -moz-animation-iteration-count: @iteration-count;
+  animation-iteration-count: @iteration-count;
+}
+
+// .bl-animation-iteration-count(2; infinite);
+.bl-animation-iteration-count (@iteration-count1; @iteration-count2; ...) {
+  @iteration-count-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-iteration-count: @iteration-count-list;
+  -moz-animation-iteration-count: @iteration-count-list;
+  animation-iteration-count: @iteration-count-list;
+}
+
+// .bl-animation-direction(normal);
+.bl-animation-direction (@direction) {
+  -webkit-animation-direction: @direction;
+  -moz-animation-direction: @direction;
+  animation-direction: @direction;
+}
+
+// .bl-animation-direction(alternate; reverse; alternate-reverse);
+.bl-animation-direction (@direction1; @direction2; ...) {
+  @direction-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-direction: @direction-list;
+  -moz-animation-direction: @direction-list;
+  animation-direction: @direction-list;
+}
+
+// .bl-animation-fill-mode(none);
+.bl-animation-fill-mode (@fill-mode) {
+  -webkit-animation-fill-mode: @fill-mode;
+  -moz-animation-fill-mode: @fill-mode;
+  animation-fill-mode: @fill-mode;
+}
+
+// .bl-animation-fill-mode(forwards; backwards; both);
+.bl-animation-fill-mode (@fill-mode1; @fill-mode2; ...) {
+  @fill-mode-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-fill-mode: @fill-mode-list;
+  -moz-animation-fill-mode: @fill-mode-list;
+  animation-fill-mode: @fill-mode-list;
+}
+
+// .bl-animation-play-state(paused);
+.bl-animation-play-state (@play-state) {
+  -webkit-animation-play-state: @play-state;
+  -moz-animation-play-state: @play-state;
+  animation-play-state: @play-state;
+}
+
+// .bl-animation-play-state(paused; running);
+.bl-animation-play-state (@play-state1; @play-state2; ...) {
+  @play-state-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
+
+  -webkit-animation-play-state: @play-state-list;
+  -moz-animation-play-state: @play-state-list;
+  animation-play-state: @play-state-list;
 }
 
