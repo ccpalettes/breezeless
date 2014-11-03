@@ -1,5 +1,58 @@
+/* ==========================================================================
+ *
+ * BreezeLess
+ *
+ * A less css library.
+ *
+ * --------------------------------------------------------------------------
+ *
+ * Copyright 2014 Jeremy Yu
+ * Released under the MIT Licence
+ * https://github.com/ccpalettes/breezeless/blob/master/LICENSE
+ * 
+ * ========================================================================== */
+
 /**
  * Border.
+ *
+ * @DESCRIPTION
+ * Set border style property of an element. 
+ * A complete border style consists three properties, they are width, style and color.
+ *
+ * @USAGE
+ * - When the length of arguments is less than or equral to 3, same style will be applied to all
+ *   four borders. You can pass border width, border style and border color into the arguments
+ *   individually, or passed a single value list combined of them to the mixin. The values of width
+ *   style and color are optional, the mixin will apply a default value if you leave any of them
+ *   empty.
+ *
+ *   + @EXAMPLE
+ *   - .bl-border(2px);
+ *   - .bl-border(dashed);
+ *   - .bl-border(2px; #999);
+ *   - .bl-border(yellow 2px); 
+ *   - .bl-border(0 dashed #A87);
+ *   - .bl-border(solid; 3px; #666);
+ *
+ * - When the length of arguments is 4, the four arguments represent top border, right border,
+ *   bottom border and left border respectively, each argument is a value list which may consists
+ *   border width, border style and border color. If one argument's value is set to null, then no
+ *   style will be applied to the relevant border.
+ *
+ *   + @EXAMPLE
+ *   - .bl-border(6px; 3px; 1px; 2px);
+ *   - .bl-border(solid #FFF000; null; 3px dashed; 2px dotted #909090);
+ *
+ * - Default values. By default, border width is set to 1px, border style is set to solid, and
+ *   border color is set to #000.
+ *
+ *   + @EXAMPLE
+ *   - .bl-border(2px) is equivalent to .bl-border(2px solid #000)
+ *   - .bl-border(6px; #FF0; dashed; blue) is equivalent to
+ *     .bl-border(6px solid #000; 1px solid #FF0; 1px dashed #000; 1px solid blue)
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/border
  */
 
 // .bl-border(2px; dotted; #847299); .bl-border(solid; 3px; #666);
@@ -123,18 +176,53 @@
 }
 
 /**
- * inline-block display fix. IE6 and above.
+ * inline-block display fix.
+ *
+ * @DESCRIPTION
+ * Fix to support inline-block display for IE6 and IE7.
+ *
+ * @EXAMPLE
+ * - .bl-inline-block-fix();
  */
 .bl-inline-block-fix () {
   display: inline-block;
   *display: inline;
-  zoom: 1;
+  *zoom: 1;
 }
 
 /**
- * Formal syntax: none | text | all | element
+ * box-sizing
+ *
+ * @ARGUMENTS
+ * - @value [border-box]
+ *
+ * @EXAMPLE
+ * - .bl-box-sizing();
+ * - .bl-box-sizing(border-box);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
  */
-.bl-user-select (@value) {
+.bl-box-sizing (@value: border-box) {
+  -webkit-box-sizing: @value;
+  -moz-box-sizing: @value;
+  box-sizing: @value;
+}
+
+/**
+ * user-select
+ *
+ * @ARGUMENTS
+ * - @value [none]
+ *
+ * @EXAMPLE
+ * - .bl-user-select();
+ * - .bl-user-select(text);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
+ */
+.bl-user-select (@value: none) {
   -webkit-user-select: @value;
   -moz-user-select: @value;
   -ms-user-select: @value;
@@ -142,9 +230,18 @@
 }
 
 /**
- * clearfix.
- * http://nicolasgallagher.com/micro-clearfix-hack/
+ * clearfix
+ *
+ * @DESCRIPTION
+ * CLear an element itself which contains floated children. 
+ *
+ * @EXAMPLE
+ * - .bl-clearfix();
+ *
+ * @REFERENCE
+ * - http://nicolasgallagher.com/micro-clearfix-hack/
  */
+
 .bl-clearfix () {
   &:before, &:after {
     content: " ";
@@ -159,7 +256,20 @@
 }
 
 /**
- * box-shadow.
+ * box-shadow
+ *
+ * @DESCRIPTION
+ * Set single or multiple shadows to one element.
+ *
+ * @ARGUMENTS
+ * - @value {...}
+ *
+ * @EXAMPLE
+ * - single shadow, .bl-box-shadow(3px 3px 6px 2px rgba(0, 0, 0, 0.2));
+ * - multiple shadows, .bl-box-shadow(1px 1px 2px 0 #F00; inset -1px -1px 2px 0 #00F);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
  */
 
 // single shadow, .bl-box-shadow(3px 3px 6px 2px rgba(0, 0, 0, 0.2));
@@ -180,8 +290,12 @@
 /**
  * border-radius
  *
- * .bl-border-radius(e("60px 20px / 30px"));
- * .bl-border-radius(10px);
+ * @EXAMPLE
+ * - .bl-border-radius(e("60px 20px / 30px"));
+ * - .bl-border-radius(10px);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius
  */
 .bl-border-radius (@radius) {
   -webkit-border-radius: @radius;
@@ -191,9 +305,27 @@
 
 /**
  * opacity
+ *
+ * @DESCRIPTION
+ * Set opacity of an element, support IE6 and above. *
+ * @ARGUMENTS
+ * - @opacity {number}
+ * - @opacity {percentage}
+ *
+ * @USAGE
+ * - You can pass a number to the opacity argument.
+ *   + @EXAMPLE
+ *   - .bl-opacity(0.5);
+ *
+ * - A percentage number is also valid.
+ *   + @EXAMPLE
+ *   - .bl-opacity(30%);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/opacity
  */
 
-// .bl-opacity(50%);
+// .bl-opacity(0.5);
 .bl-opacity (@opacity) when (isnumber(@opacity)) and not (ispercentage(@opacity)) {
   @ms-opacity: @opacity * 100;
 
@@ -213,6 +345,50 @@
 
 /**
  * transition
+ *
+ * @DESCRIPTION
+ * Set single or multiple transitions to one element.
+ *
+ * @GROUP=BL-TRANSITION
+ *
+ * @ARGUMENTS
+ * - @value {...}
+ *
+ * @USAGE
+ * - BreezeLess defined five transition mixins, one mixin is used to set the shorthand transition
+ *   property, and the other four are used to set specific transition CSS property. Each mixin
+ *   accept one or more arguments.
+ *
+ * - When you need to pass "transform" as the transition-property value, you don't need to add
+ *   vendor-prefixes before "transform", BreezeLess will do it for you.
+ *
+ * - bl-transition. Set the shorthand transition property.
+ *   + @EXAMPLE
+ *   - .bl-transition(transform 1s);
+ *   - .bl-transition(width 2s; height 2s);
+ *
+ * - bl-transition-property. Set transition-property property.
+ *   + @EXAMPLE
+ *   - .bl-transition-property(top); 
+ *   - .bl-transition-property(transform; color);
+ *
+ * - bl-transition-duration. Set transition-duration property.
+ *   + @EXAMPLE
+ *   - .bl-transition-duration(1s); 
+ *   - .bl-transition-duration(1s; 2s);
+ *
+ * - bl-transition-timing-function. Set transition-timing-function property.
+ *   + @EXAMPLE
+ *   - .bl-transition-timing-function(ease); 
+ *   - .bl-transition-timing-function(ease-in; ease-out);
+ *
+ * - bl-transition-delay. Set transition-delay property.
+ *   + @EXAMPLE
+ *   - .bl-transition-delay(1s); 
+ *   - .bl-transition-delay(1s; 2s);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/transition
  */
 
 // single transition, .bl-transition(width 2s); .bl-transition(transform 1s);
@@ -269,8 +445,6 @@
   transition-property: @merged-property-list;
 }
 
-
-
 // .bl-transition-duration(1s);
 .bl-transition-duration (@duration) {
   -webkit-transition-duration: @duration;
@@ -326,7 +500,68 @@
 }
 
 /**
- * Animation
+ * animation
+ *
+ * @DESCRIPTION
+ * Set single or multiple animations to one element.
+ *
+ * @GROUP=BL-ANIMATION
+ *
+ * @ARGUMENTS
+ * - @value {...}
+ *
+ * @USAGE
+ * - BreezeLess defined nine transition mixins, one mixin is used to set the shorthand animation
+ *   property, and the other eight mixins are used to set specific animation CSS property. Each
+ *   mixin accept one or more arguments.
+ *
+ * - bl-animation. Set the shorthand animation property.
+ *   + @EXAMPLE
+ *   - .bl-animation(swing 3s ease 1s 2 alternate both running);
+ *   - .bl-animation(bounce 5s; rotate 2s);
+ *
+ * - bl-animation-name. Set animation-name property.
+ *   + @EXAMPLE
+ *   - .bl-animation-name(swing); 
+ *   - .bl-animation-name(bounce; rotate);
+ *
+ * - bl-animation-duration. Set animation-duration property.
+ *   + @EXAMPLE
+ *   - .bl-animation-duration(1s); 
+ *   - .bl-animation-duration(3s; 5s);
+ *
+ * - bl-animation-timing-function. Set animation-timing-function property.
+ *   + @EXAMPLE
+ *   - .bl-animation-timing-function(ease); 
+ *   - .bl-animation-timing-function(ease-in; ease-out);
+ *
+ * - bl-animation-delay. Set animation-delay property.
+ *   + @EXAMPLE
+ *   - .bl-animation-delay(2s); 
+ *   - .bl-animation-delay(0s; 3s);
+ *
+ * - bl-animation-iteration-count. Set animation-iteration-count property.
+ *   + @EXAMPLE
+ *   - .bl-animation-iteration-count(6); 
+ *   - .bl-animation-iteration-count(2; infinite);
+ *
+ * - bl-animation-direction. Set animation-direction property.
+ *   + @EXAMPLE
+ *   - .bl-animation-direction(normal); 
+ *   - .bl-animation-direction(alternate; reverse; alternate-reverse);
+ *
+ * - bl-animation-fill-mode. Set animation-fill-mode property.
+ *   + @EXAMPLE
+ *   - .bl-animation-fill-mode(none); 
+ *   - .bl-animation-fill-mode(forwards; backwards; both);
+ *
+ * - bl-animation-play-state. Set animation-play-state property.
+ *   + @EXAMPLE
+ *   - .bl-animation-play-state(paused); 
+ *   - .bl-animation-play-state(paused; running);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/animation
  */
 
 // .bl-animation(swing 3s ease 1s 2 alternate both running);
@@ -336,8 +571,7 @@
   animation: @animation;
 }
 
-// multiple animations
-// .bl-animation(bounce 5s; rotate 2s);
+// multiple animations, .bl-animation(bounce 5s; rotate 2s);
 .bl-animation (@animation1; @animation2; ...) {
   @animation-list: replace(~`"@{arguments}"`,"[\[\]]", "", "g");
 
