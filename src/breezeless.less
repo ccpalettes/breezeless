@@ -9,14 +9,14 @@
  * Copyright 2014 Jeremy Yu
  * Released under the MIT Licence
  * https://github.com/ccpalettes/breezeless/blob/master/LICENSE
- * 
+ *
  * ========================================================================== */
 
 /**
  * Border.
  *
  * @DESCRIPTION
- * Set border style property of an element. 
+ * Set border style property of an element.
  * A complete border style consists three properties, they are width, style and color.
  *
  * @USAGE
@@ -30,7 +30,7 @@
  *   - .bl-border(2px);
  *   - .bl-border(dashed);
  *   - .bl-border(2px; #999);
- *   - .bl-border(yellow 2px); 
+ *   - .bl-border(yellow 2px);
  *   - .bl-border(0 dashed #A87);
  *   - .bl-border(solid; 3px; #666);
  *
@@ -233,7 +233,7 @@
  * clearfix
  *
  * @DESCRIPTION
- * CLear an element itself which contains floated children. 
+ * CLear an element itself which contains floated children.
  *
  * @EXAMPLE
  * - .bl-clearfix();
@@ -307,7 +307,8 @@
  * opacity
  *
  * @DESCRIPTION
- * Set opacity of an element, support IE6 and above. *
+ * Set opacity of an element, support IE6 and above.
+ *
  * @ARGUMENTS
  * - @opacity {number}
  * - @opacity {percentage}
@@ -369,22 +370,22 @@
  *
  * - bl-transition-property. Set transition-property property.
  *   + @EXAMPLE
- *   - .bl-transition-property(top); 
+ *   - .bl-transition-property(top);
  *   - .bl-transition-property(transform; color);
  *
  * - bl-transition-duration. Set transition-duration property.
  *   + @EXAMPLE
- *   - .bl-transition-duration(1s); 
+ *   - .bl-transition-duration(1s);
  *   - .bl-transition-duration(1s; 2s);
  *
  * - bl-transition-timing-function. Set transition-timing-function property.
  *   + @EXAMPLE
- *   - .bl-transition-timing-function(ease); 
+ *   - .bl-transition-timing-function(ease);
  *   - .bl-transition-timing-function(ease-in; ease-out);
  *
  * - bl-transition-delay. Set transition-delay property.
  *   + @EXAMPLE
- *   - .bl-transition-delay(1s); 
+ *   - .bl-transition-delay(1s);
  *   - .bl-transition-delay(1s; 2s);
  *
  * @REFERENCE
@@ -522,42 +523,42 @@
  *
  * - bl-animation-name. Set animation-name property.
  *   + @EXAMPLE
- *   - .bl-animation-name(swing); 
+ *   - .bl-animation-name(swing);
  *   - .bl-animation-name(bounce; rotate);
  *
  * - bl-animation-duration. Set animation-duration property.
  *   + @EXAMPLE
- *   - .bl-animation-duration(1s); 
+ *   - .bl-animation-duration(1s);
  *   - .bl-animation-duration(3s; 5s);
  *
  * - bl-animation-timing-function. Set animation-timing-function property.
  *   + @EXAMPLE
- *   - .bl-animation-timing-function(ease); 
+ *   - .bl-animation-timing-function(ease);
  *   - .bl-animation-timing-function(ease-in; ease-out);
  *
  * - bl-animation-delay. Set animation-delay property.
  *   + @EXAMPLE
- *   - .bl-animation-delay(2s); 
+ *   - .bl-animation-delay(2s);
  *   - .bl-animation-delay(0s; 3s);
  *
  * - bl-animation-iteration-count. Set animation-iteration-count property.
  *   + @EXAMPLE
- *   - .bl-animation-iteration-count(6); 
+ *   - .bl-animation-iteration-count(6);
  *   - .bl-animation-iteration-count(2; infinite);
  *
  * - bl-animation-direction. Set animation-direction property.
  *   + @EXAMPLE
- *   - .bl-animation-direction(normal); 
+ *   - .bl-animation-direction(normal);
  *   - .bl-animation-direction(alternate; reverse; alternate-reverse);
  *
  * - bl-animation-fill-mode. Set animation-fill-mode property.
  *   + @EXAMPLE
- *   - .bl-animation-fill-mode(none); 
+ *   - .bl-animation-fill-mode(none);
  *   - .bl-animation-fill-mode(forwards; backwards; both);
  *
  * - bl-animation-play-state. Set animation-play-state property.
  *   + @EXAMPLE
- *   - .bl-animation-play-state(paused); 
+ *   - .bl-animation-play-state(paused);
  *   - .bl-animation-play-state(paused; running);
  *
  * @REFERENCE
@@ -708,3 +709,110 @@
   animation-play-state: @play-state-list;
 }
 
+/**
+ * ellipsis
+ *
+ * @DESCRIPTION
+ * Display an ellipsis ('…', U+2026 HORIZONTAL ELLIPSIS) for a clipped text.
+ *
+ * @EXAMPLE
+ * - .bl-ellipsis();
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow
+ */
+.bl-ellipsis () {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+/**
+ * transform
+ *
+ * @DESCRIPTION
+ * Set transform related CSS properties.
+ *
+ * @GROUP=BL-TRANSFORM
+ *
+ * @ARGUMENTS
+ * - @value {...}
+ *
+ * @USAGE
+ * - bl-transform. Set the shorthand transform property.
+ *   + @EXAMPLE
+ *   - .bl-transform(rotateX(60deg));
+ *
+ * - bl-transform-origin. Set transform-origin property.
+ *   + @EXAMPLE
+ *   - .bl-transform-origin(50px 100px);
+ *
+ * - bl-transform-style. Set transform-style property.
+ *   + @EXAMPLE
+ *   - .bl-transform-style(preserve-3d);
+ *
+ * - bl-perspective. Set perspective property.
+ *   + @EXAMPLE
+ *   - .bl-perspective(20px);
+ *
+ * - bl-perspective-origin. Set perspective-origin property.
+ *   + @EXAMPLE
+ *   - .bl-perspective-origin(0 50%);
+ *
+ * - bl-backface-visibility. Set backface-visibility property.
+ *   + @EXAMPLE
+ *   - .bl-backface-visibility(hidden);
+ *
+ * @REFERENCE
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/perspective
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/perspective-origin
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility
+ */
+
+// .bl-transform(rotateX(60deg));
+.bl-transform (...) {
+  -webkit-transform: @arguments;
+  -moz-transform: @arguments;
+  -ms-transform: @arguments;
+  transform: @arguments;
+}
+
+// .bl-transform-origin(50px 100px);
+.bl-transform-origin (...) {
+  -webkit-transform-origin: @arguments;
+  -moz-transform-origin: @arguments;
+  -ms-transform-origin: @arguments;
+  transform-origin: @arguments;
+}
+
+// .bl-transform-style(preserve-3d);
+.bl-transform-style (@style: flat) {
+  -webkit-transform-style: @style;
+  -moz-transform-style: @style;
+  transform-style: @style;
+}
+
+// .bl-perspective(20px);
+.bl-perspective (@perspective: none) {
+  -webkit-perspective: @perspective;
+  -moz-perspective: @perspective;
+  perspective: @perspective;
+}
+
+// .bl-perspective-origin(0 50%);
+.bl-perspective-origin (...) {
+  -webkit-perspective-origin: @arguments;
+  -moz-perspective-origin: @arguments;
+  perspective-origin: @arguments;
+}
+
+// .bl-backface-visibility(hidden);
+.bl-backface-visibility (@backface-visibility: visible) {
+  -webkit-backface-visibility: @backface-visibility;
+  -moz-backface-visibility: @backface-visibility;
+  backface-visibility: @backface-visibility;
+}
