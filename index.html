@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Breezeless by ccpalettes</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Breezeless</h1>
+        <h2>Breezeless is a LESS library.</h2>
+        <a href="https://github.com/ccpalettes/breezeless" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="breezeless" class="anchor" href="#breezeless" aria-hidden="true"><span class="octicon octicon-link"></span></a>Breezeless</h1>
+
+<p><a href="https://github.com/ccpalettes/breezeless">Breezeless</a> is a library that provides a set of
+basic or advanced mixins for <a href="http://lesscss.org">LESS</a>(a CSS pre-processor).</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>Breezeless focus on providing reusable LESS mixins and resolving complicated headaches in CSS
+coding.</p>
+
+<ul>
+<li><p><strong>Easy to use</strong>. All the mixins in Breezeless start with <em>bl-</em> prefix, and keep their names
+the same as corresponding CSS properties as much as possible.</p></li>
+<li><p><strong>No CSS output</strong>. All the mixins don’t output any CSS, thus, you can use these mixins inside
+your own LESS mixins, but you can’t use the bl- prefixed names as CSS classes in HTML.</p></li>
+<li><p><strong>Cross-browser</strong>. Breezeless generates vendor-prefixed versions of a CSS property. Breezeless
+follows a rule to decide whether a vendor-prefixed CSS property should be added into a mixin.
+If the market share of any version of any kind of the browsers that need a vendor-prefix to
+support a specific CSS feature is equal to or greater than 0.02%, the vendor-prefix version CSS
+property will be used.(All the market share data is get from <a href="http://caniuse.com/">Can I use</a>.)</p></li>
+<li><p><strong>Merged properties</strong>. Breezeless solves special cases when a standard CSS property is supported
+but another CSS property name that is used as a parameter of the former CSS property is maybe not
+supported(need add vendor-prefix) in a browser. For instance, Chrome 35 supports transition, but
+doesn’t support transform(need add -webkit- vendor-prefix), with prue CSS, you need write
+<em>transition: -webkit-transform 2s;</em> in Chrome 35 and write <em>transition: transform 2s;</em> in the
+latest version of Chrome. Breezeless solves this problem in one line
+<em>.bl-transition(transform 2s);</em>.</p></li>
+<li><p><strong>Helpes</strong>. Breezeless also provides some useful helpers to deal with common browser compatibility
+issues.</p></li>
+</ul>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Use</h2>
+
+<ul>
+<li><p>Download the <a href="https://raw.githubusercontent.com/ccpalettes/breezeless/master/src/breezeless.less">breezeless.less</a>
+file and place it in your working LESS folder.</p></li>
+<li><p>Reference breezeless.less in the top of your LESS files.</p></li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-k">@import</span> (reference) <span class="pl-s1"><span class="pl-pds">"</span>breezeless.less<span class="pl-pds">"</span></span>;
+</pre></div>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a id="-border" class="anchor" href="#-border" aria-hidden="true"><span class="octicon octicon-link"></span></a>• border</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Set border style property of an element. A complete border style consists three properties, they
+are width, style and color.</p>
+
+<p><strong>Usage</strong></p>
+
+<ul>
+<li>When the length of arguments is less than or equral to 3, same style will be applied to all four
+borders. You can pass border width, border style and border color into the arguments individually,
+or passed a single value list combined of them to the mixin. The values of width style and color
+are optional, the mixin will apply a default value if you leave any of them empty.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-border</span>(<span class="pl-c1">2</span><span class="pl-k">px</span>);
+    <span class="pl-e">.bl-border</span>(<span class="pl-c1">2</span><span class="pl-k">px</span>; <span class="pl-c1">#999</span>);
+    <span class="pl-e">.bl-border</span>(<span class="pl-c1">0</span> <span class="pl-sc">dashed</span> <span class="pl-c1">#A87</span>);</pre></div>
+
+<ul>
+<li>When the length of arguments is 4, the four arguments represent top border, right border, bottom
+border and left border respectively, each argument is a value list which may consists border width,
+border style and border color. If one argument’s value is set to null, then no style will be
+applied to the relevant border.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-border</span>(<span class="pl-c1">6</span><span class="pl-k">px</span>;<span class="pl-c1"> 3</span><span class="pl-k">px</span>;<span class="pl-c1"> 1</span><span class="pl-k">px</span>;<span class="pl-c1"> 2</span><span class="pl-k">px</span>);
+    <span class="pl-e">.bl-border</span>(<span class="pl-sc">solid</span> <span class="pl-c1">#FFF000</span>; null;<span class="pl-c1"> 3</span><span class="pl-k">px</span> <span class="pl-sc">dashed</span>;<span class="pl-c1"> 2</span><span class="pl-k">px</span> <span class="pl-sc">dotted</span> <span class="pl-c1">#909090</span>);</pre></div>
+
+<ul>
+<li>Default values. By default, border width is set to 1px, border style is set to solid, and border
+color is set to #000.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-c">// equivalent to .bl-border(6px solid #000; 1px solid #FF0; 1px dashed #000; 1px solid blue);</span>
+    <span class="pl-e">.bl-border</span>(<span class="pl-c1">6</span><span class="pl-k">px</span>; <span class="pl-c1">#FF0</span>; <span class="pl-sc">dashed</span>; <span class="pl-sc">blue</span>);</pre></div>
+
+<h3>
+<a id="-inline-block-fix" class="anchor" href="#-inline-block-fix" aria-hidden="true"><span class="octicon octicon-link"></span></a>• inline-block-fix</h3>
+
+<p><strong>Description</strong></p>
+
+<p>The inline-block display fix. Fix to support inline-block display for IE6 and IE7.</p>
+
+<p><strong>Usage</strong></p>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-inline-block-fix</span>();</pre></div>
+
+<h3>
+<a id="-box-sizing" class="anchor" href="#-box-sizing" aria-hidden="true"><span class="octicon octicon-link"></span></a>• box-sizing</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Mixin for box-sizing CSS property.</p>
+
+<p><strong>Usage</strong></p>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-box-sizing</span>();  <span class="pl-c">// default value: border-box</span>
+    <span class="pl-e">.bl-box-sizing</span>(<span class="pl-s3">border</span><span class="pl-k">-</span>box);</pre></div>
+
+<h3>
+<a id="-user-select" class="anchor" href="#-user-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>• user-select</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Mixin for user-select CSS property.</p>
+
+<p><strong>Usage</strong></p>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-user-select</span>();  <span class="pl-c">// default value: none</span>
+    <span class="pl-e">.bl-user-select</span>(<span class="pl-sc">text</span>);</pre></div>
+
+<h3>
+<a id="-clearfix" class="anchor" href="#-clearfix" aria-hidden="true"><span class="octicon octicon-link"></span></a>• clearfix</h3>
+
+<p><strong>Description</strong></p>
+
+<p>CLear an element itself which contains floated children.</p>
+
+<p><strong>Usage</strong></p>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-clearfix</span>();</pre></div>
+
+<h3>
+<a id="-box-shadow" class="anchor" href="#-box-shadow" aria-hidden="true"><span class="octicon octicon-link"></span></a>• box-shadow</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Set single or multiple shadows to one element.</p>
+
+<p><strong>Usage</strong></p>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-c">//single shadow</span>
+    <span class="pl-e">.bl-box-shadow</span>(<span class="pl-c1">3</span><span class="pl-k">px</span><span class="pl-c1"> 3</span><span class="pl-k">px</span><span class="pl-c1"> 6</span><span class="pl-k">px</span><span class="pl-c1"> 2</span><span class="pl-k">px</span> <span class="pl-s3">rgba</span>(<span class="pl-c1">0</span>,<span class="pl-c1"> 0</span>,<span class="pl-c1"> 0</span>,<span class="pl-c1"> 0.2</span>));
+
+    <span class="pl-c">//multiple shadows</span>
+    <span class="pl-e">.bl-box-shadow</span>(<span class="pl-c1">1</span><span class="pl-k">px</span><span class="pl-c1"> 1</span><span class="pl-k">px</span><span class="pl-c1"> 2</span><span class="pl-k">px</span><span class="pl-c1"> 0</span> <span class="pl-c1">#F00</span>; <span class="pl-sc">inset</span> <span class="pl-c1">-1</span><span class="pl-k">px</span> <span class="pl-c1">-1</span><span class="pl-k">px</span><span class="pl-c1"> 2</span><span class="pl-k">px</span><span class="pl-c1"> 0</span> <span class="pl-c1">#00F</span>);</pre></div>
+
+<h3>
+<a id="-border-radius" class="anchor" href="#-border-radius" aria-hidden="true"><span class="octicon octicon-link"></span></a>• border-radius</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Set border-radius property of an element.</p>
+
+<p><strong>Usage</strong></p>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-border-radius</span>(e(<span class="pl-s1"><span class="pl-pds">"</span>60px 20px / 30px<span class="pl-pds">"</span></span>));
+    <span class="pl-e">.bl-border-radius</span>(<span class="pl-c1">10</span><span class="pl-k">px</span>);</pre></div>
+
+<h3>
+<a id="-opacity" class="anchor" href="#-opacity" aria-hidden="true"><span class="octicon octicon-link"></span></a>• opacity</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Set opacity of an element, support IE6 and above.</p>
+
+<p><strong>Usage</strong></p>
+
+<ul>
+<li>You can pass a number to the opacity argument.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-opacity</span>(<span class="pl-c1">0.5</span>);</pre></div>
+
+<ul>
+<li>A percentage number is also valid.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-opacity</span>(<span class="pl-c1">30</span><span class="pl-k">%</span>);</pre></div>
+
+<h3>
+<a id="-transition" class="anchor" href="#-transition" aria-hidden="true"><span class="octicon octicon-link"></span></a>• transition</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Set single or multiple transitions to one element.</p>
+
+<p><strong>Usage</strong></p>
+
+<ul>
+<li><p>BreezeLess defined five transition mixins, one mixin is used to set the shorthand transition
+property, and the other four are used to set specific transition CSS property. Each mixin accept
+one or more arguments.</p></li>
+<li><p>When you need to pass “transform” as the transition-property value, you don’t need to add
+vendor-prefixes before “transform”, BreezeLess will do it for you.</p></li>
+<li><p>bl-transition. Set the shorthand transition property.</p></li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transition</span>(transform<span class="pl-c1"> 1</span>s);
+    <span class="pl-e">.bl-transition</span>(<span class="pl-s3">width</span><span class="pl-c1"> 2</span>s; <span class="pl-s3">height</span><span class="pl-c1"> 2</span>s);</pre></div>
+
+<ul>
+<li>bl-transition-property. Set transition-property property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transition-property</span>(transform; <span class="pl-s3">color</span>);</pre></div>
+
+<ul>
+<li>bl-transition-duration. Set transition-duration property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transition-duration</span>(<span class="pl-c1">1</span>s;<span class="pl-c1"> 2</span>s);</pre></div>
+
+<ul>
+<li>bl-transition-timing-function. Set transition-timing-function property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transition-timing-function</span>(ease);</pre></div>
+
+<ul>
+<li>bl-transition-delay. Set transition-delay property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transition-delay</span>(<span class="pl-c1">1</span>s);</pre></div>
+
+<h3>
+<a id="-animation" class="anchor" href="#-animation" aria-hidden="true"><span class="octicon octicon-link"></span></a>• animation</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Set single or multiple animations to one element.</p>
+
+<p><strong>Usage</strong></p>
+
+<ul>
+<li><p>BreezeLess defined nine transition mixins, one mixin is used to set the shorthand animation
+property, and the other eight mixins are used to set specific animation CSS property. Each mixin
+accept one or more arguments.</p></li>
+<li><p>bl-animation. Set the shorthand animation property.</p></li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation</span>(swing<span class="pl-c1"> 3</span>s ease<span class="pl-c1"> 1</span>s<span class="pl-c1"> 2</span> alternate <span class="pl-sc">both</span> running);
+    <span class="pl-e">.bl-animation</span>(bounce<span class="pl-c1"> 5</span>s; rotate<span class="pl-c1"> 2</span>s);</pre></div>
+
+<ul>
+<li>bl-animation-name. Set animation-name property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-name</span>(swing);</pre></div>
+
+<ul>
+<li>bl-animation-duration. Set animation-duration property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-duration</span>(<span class="pl-c1">3</span>s;<span class="pl-c1"> 5</span>s);</pre></div>
+
+<ul>
+<li>bl-animation-timing-function. Set animation-timing-function property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-timing-function</span>(ease<span class="pl-k">-</span>in; ease<span class="pl-k">-</span>out);</pre></div>
+
+<ul>
+<li>bl-animation-delay. Set animation-delay property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-delay</span>(<span class="pl-c1">0</span>s;<span class="pl-c1"> 3</span>s);</pre></div>
+
+<ul>
+<li>bl-animation-iteration-count. Set animation-iteration-count property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-iteration-count</span>(<span class="pl-c1">2</span>; infinite);</pre></div>
+
+<ul>
+<li>bl-animation-direction. Set animation-direction property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-direction</span>(alternate; reverse; alternate<span class="pl-k">-</span>reverse);</pre></div>
+
+<ul>
+<li>bl-animation-fill-mode. Set animation-fill-mode property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-fill-mode</span>(<span class="pl-sc">none</span>);</pre></div>
+
+<ul>
+<li>bl-animation-play-state. Set animation-play-state property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-animation-play-state</span>(<span class="pl-s3">pause</span>d; running);</pre></div>
+
+<h3>
+<a id="-ellipsis" class="anchor" href="#-ellipsis" aria-hidden="true"><span class="octicon octicon-link"></span></a>• ellipsis</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Display an ellipsis (‘…’, U+2026 HORIZONTAL ELLIPSIS) for a clipped text.</p>
+
+<p><strong>Usage</strong></p>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-ellipsis</span>();</pre></div>
+
+<h3>
+<a id="-transform" class="anchor" href="#-transform" aria-hidden="true"><span class="octicon octicon-link"></span></a>• transform</h3>
+
+<p><strong>Description</strong></p>
+
+<p>Set transform related CSS properties.</p>
+
+<p><strong>Usage</strong></p>
+
+<ul>
+<li>bl-transform. Set the shorthand transform property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transform</span>(rotateX(<span class="pl-c1">60</span>deg));</pre></div>
+
+<ul>
+<li>bl-transform-origin. Set transform-origin property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transform-origin</span>(<span class="pl-c1">50</span><span class="pl-k">px</span><span class="pl-c1"> 100</span><span class="pl-k">px</span>);</pre></div>
+
+<ul>
+<li>bl-transform-style. Set transform-style property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-transform-style</span>(preserve<span class="pl-c1">-3</span>d);</pre></div>
+
+<ul>
+<li>bl-perspective. Set perspective property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-perspective</span>(<span class="pl-c1">20</span><span class="pl-k">px</span>);</pre></div>
+
+<ul>
+<li>bl-perspective-origin. Set perspective-origin property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-perspective-origin</span>(<span class="pl-c1">0 50</span><span class="pl-k">%</span>);</pre></div>
+
+<ul>
+<li>bl-backface-visibility. Set backface-visibility property.</li>
+</ul>
+
+<div class="highlight highlight-less"><pre>    <span class="pl-e">.bl-backface-visibility</span>(<span class="pl-sc">hidden</span>);</pre></div>
+
+<h2>
+<a id="more" class="anchor" href="#more" aria-hidden="true"><span class="octicon octicon-link"></span></a>More</h2>
+
+<p>To see more examples and references, you can check the <a href="https://github.com/ccpalettes/breezeless/blob/master/src/breezeless.less">breezeless source code</a>.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/ccpalettes/breezeless/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/ccpalettes/breezeless/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/ccpalettes/breezeless"></a> is maintained by <a href="https://github.com/ccpalettes">ccpalettes</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
