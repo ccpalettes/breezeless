@@ -360,3 +360,9 @@ More
 
 To see more examples and references, you can check the [breezeless source code](https://github.com/ccpalettes/breezeless/blob/master/src/breezeless.less).
 
+License
+-------
+Breezeless is licensed under the [MIT license]
+(https://github.com/ccpalettes/breezeless/blob/master/LICENSE).
+
+Copyright (c) 2014 [Jeremy Yu](https://github.com/ccpalettes) <ccpalettes@gmail.com>
