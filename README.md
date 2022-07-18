@@ -365,4 +365,3 @@ License
 Breezeless is licensed under the [MIT license]
 (https://github.com/ccpalettes/breezeless/blob/master/LICENSE).
 
-Copyright (c) 2014 [Jeremy Yu](https://github.com/ccpalettes) <ccpalettes@gmail.com>
